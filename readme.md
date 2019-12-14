@@ -14,7 +14,7 @@ How the component is visually represented is up to you. See examples for some "p
 
 ## Install:
 
-    npm install mithril-checkbox
+    npm install mithril-knob
 
 (TypeScript types are included.)
 
