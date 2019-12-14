@@ -1,0 +1,39 @@
+{
+  "name": "mithril-knob",
+  "version": "0.1.0",
+  "description": "Mithril Knob component",
+  "keywords": [
+    "mithril",
+    "knob"
+  ],
+  "author": "Mike Linkovich",
+  "license": "MIT",
+  "repository": "https://github.com/spacejack/mithril-knob",
+  "main": "index.js",
+  "scripts": {
+    "build-lib": "tsc -p src",
+    "serve-ex": "serve -p 3000 example/public",
+    "compile-ex": "browserify --debug example/src/main.ts -p [ tsify --project example/src/tsconfig.json ] -o example/public/js/app.js",
+    "watch-ex": "watchify -v --debug example/src/main.ts -p [ tsify --project example/src/tsconfig.json ] -o example/public/js/app.js",
+    "build-ex": "browserify example/src/main.ts -p [ tsify --project example/src/tsconfig.json ] | uglifyjs -cm -o example/public/js/app.js",
+    "build-es2015": "tsc src/index.ts --target ES2015",
+    "clean-ex": "rm -f example/public/js/app.js",
+    "clean-lib": "rm -f index.js index.d.ts",
+    "clean-es2015": "rm -f src/index.js",
+    "build": "run-s build-lib build-ex",
+    "clean": "run-s clean-lib clean-ex clean-es2015",
+    "start": "run-p watch-ex serve-ex"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/mithril": "^2.0.2",
+    "serve": "^11.2.0",
+    "mithril": "^2.0.4",
+    "npm-run-all": "^4.1.5",
+    "tsify": "^4.0.1",
+    "tslint": "^5.20.1",
+    "typescript": "^3.7.3",
+    "uglify-js": "^3.7.2",
+    "watchify": "^3.11.1"
+  }
+}
