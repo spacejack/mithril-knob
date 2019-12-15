@@ -88,9 +88,9 @@
                 ptr = Ptr(v.dom, {
                     down: function (e) {
                         dragStart = { x: e.x, y: e.y, value: value };
+                        v.dom.focus();
                     },
                     move: function (e) {
-                        var _a, _b;
                         if (!dragStart) {
                             console.warn('Got a move message before down message');
                             return;
@@ -103,15 +103,14 @@
                         var val = clamp(dragStart.value + (max - min) * d / distance, min, max);
                         if (val !== value) {
                             value = val;
-                            if (((_b = (_a = attrs).onDrag) === null || _b === void 0 ? void 0 : _b.call(_a, value)) !== false) {
+                            if (attrs.onDrag && attrs.onDrag(value) !== false) {
                                 m.redraw();
                             }
                         }
                     },
                     up: function () {
-                        var _a, _b;
                         if (value !== dragStart.value) {
-                            if (((_b = (_a = attrs).onChange) === null || _b === void 0 ? void 0 : _b.call(_a, value)) !== false) {
+                            if (attrs.onChange && attrs.onChange(value) !== false) {
                                 m.redraw();
                             }
                         }

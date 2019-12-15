@@ -8,11 +8,11 @@ export const DEFAULT_AXIS = 'y'
 
 export interface Attrs {
 	/** Minimum value (default 0) */
-	min?: number;
+	min?: number
 	/** Maximum value (default 1) */
-	max?: number;
+	max?: number
 	/** Step amount (default 0 = infinite) */
-	step?: number;
+	step?: number
 	/** Distance in pixels to travel to max default 100 */
 	distance?: number
 	/** Axis of drag motion to change value (default 'y') */
@@ -103,7 +103,8 @@ export default function MithrilKnob(): m.Component<Attrs> {
 			// Use drag events & compute input values
 			ptr = Ptr(v.dom as HTMLElement, {
 				down: e => {
-					dragStart = {x: e.x, y: e.y, value}
+					dragStart = {x: e.x, y: e.y, value};
+					(v.dom as HTMLElement).focus()
 				},
 				move: e => {
 					if (!dragStart) {
@@ -121,14 +122,14 @@ export default function MithrilKnob(): m.Component<Attrs> {
 					)
 					if (val !== value) {
 						value = val
-						if (attrs.onDrag?.(value) !== false) {
+						if (attrs.onDrag && attrs.onDrag(value) !== false) {
 							m.redraw()
 						}
 					}
 				},
 				up: () => {
 					if (value !== dragStart!.value) {
-						if (attrs.onChange?.(value) !== false) {
+						if (attrs.onChange && attrs.onChange(value) !== false) {
 							m.redraw()
 						}
 					}
