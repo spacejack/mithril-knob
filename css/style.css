@@ -30,6 +30,10 @@ body, td, th {
 	border-radius: 50%;
 	cursor: pointer;
 }
+.knob-round:focus {
+	outline: 0;
+	border-color: #79E;
+}
 
 .knob-spin {
 	position: absolute;
