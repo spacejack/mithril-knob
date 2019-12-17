@@ -45,6 +45,7 @@
     "no-unnecessary-field-initialization": false,
     "no-unused-expression": false,
     "number-literal-format": false,
+    "object-literal-key-quotes": false,
     "object-literal-sort-keys": false,
     "only-arrow-functions": false,
     "one-variable-per-declaration": false,
@@ -59,6 +60,7 @@
     "space-before-function-paren": false,
     "trailing-comma": false,
     "typedef": [false],
+    "variable-name": false,
     "unified-signatures": false,
     "use-named-parameter": false
   }

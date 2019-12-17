@@ -13,24 +13,24 @@ export interface Attrs {
 	max?: number
 	/** Step amount (default 0 = infinite) */
 	step?: number
-	/** Distance in pixels to travel to max default 100 */
+	/** Distance in pixels to travel to max (default 100) */
 	distance?: number
 	/** Axis of drag motion to change value (default 'y') */
 	axis?: 'x' | 'y' | 'xy'
 	/** Optional element id */
-	id?: string
-	/** Optional input name */
-	name?: string
+	id?: string | null
+	/** Optional input name. If provided, a hidden input element will be renderd having the current value */
+	name?: string | null
 	/** Optional input value */
 	value?: number | string
 	/** Optional class to apply to containing element */
-	class?: string
-	/** Change value event handler */
+	className?: string | null
+	class?: string | null
+	style?: string | {[id: string]: any} | null
+	/** Change (commit) value event handler. Return false to prevent redraw. */
 	onChange?(value: number): false | void
-	/** Drag value event handler */
+	/** Drag value event handler. Return false to prevent redraw. */
 	onDrag?(value: number): false | void
-	/** Any other attrs are forwarded to the hidden input element */
-	[id: string]: any
 }
 
 export default function MithrilKnob(): m.Component<Attrs> {
@@ -148,7 +148,7 @@ export default function MithrilKnob(): m.Component<Attrs> {
 		},
 		view: v => {
 			updateAttrs(v.attrs)
-			const {className, class: elClass, style} = v.attrs
+			const {className, class: class_, style} = v.attrs
 			// Build label attrs object
 			const elAttrs: {[id: string]: any} = {
 				id: v.attrs.id,
@@ -163,8 +163,8 @@ export default function MithrilKnob(): m.Component<Attrs> {
 			}
 			if (className !== undefined) {
 				elAttrs.className = className
-			} else if (elClass !== undefined) {
-				elAttrs.class = elClass
+			} else if (class_ !== undefined) {
+				elAttrs.class = class_
 			}
 			if (style !== undefined) {
 				elAttrs.style = style
